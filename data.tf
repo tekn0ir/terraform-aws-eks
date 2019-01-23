@@ -1,5 +1,9 @@
 data "aws_region" "current" {}
 
+data "aws_iam_role" "cluster" {
+  name = "${local.cluster_service_role_name}"
+}
+
 data "aws_iam_policy_document" "workers_assume_role_policy" {
   statement {
     sid = "EKSWorkerAssumeRole"

@@ -29,6 +29,16 @@ output "cluster_security_group_id" {
   value       = "${local.cluster_security_group_id}"
 }
 
+output "cluster_service_role_arn" {
+  description = "Service IAM role ARN attached to the EKS cluster."
+  value       = "${data.aws_iam_role.cluster.arn}"
+}
+
+output "cluster_service_role_name" {
+  description = "Service IAM role name attached to the EKS cluster."
+  value       = "${data.aws_iam_role.cluster.name}"
+}
+
 output "config_map_aws_auth" {
   description = "A kubernetes configuration to authenticate to this EKS cluster."
   value       = "${data.template_file.config_map_aws_auth.rendered}"

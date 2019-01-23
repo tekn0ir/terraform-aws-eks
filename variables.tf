@@ -12,6 +12,11 @@ variable "cluster_version" {
   default     = "1.11"
 }
 
+variable "cluster_service_role_name" {
+  description = "If provided, the EKS cluster will use this service role. If not given, a service IAM role will be created with the necessary policies attached."
+  default     = ""
+}
+
 variable "config_output_path" {
   description = "Where to save the Kubectl config file (if `write_kubeconfig = true`). Should end in a forward slash `/` ."
   default     = "./"
