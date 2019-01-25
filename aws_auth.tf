@@ -36,7 +36,7 @@ data "template_file" "worker_role_arns" {
   template = "${file("${path.module}/templates/worker-role.tpl")}"
 
   vars {
-    worker_role_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${element(aws_iam_instance_profile.workers.*.role, count.index)}"
+    worker_role_arn = "${element(data.aws_iam_instance_profile.workers.*.role_arn, count.index)}"
   }
 }
 

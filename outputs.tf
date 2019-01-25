@@ -66,10 +66,10 @@ output "worker_security_group_id" {
 
 output "worker_iam_role_name" {
   description = "default IAM role name for EKS worker groups"
-  value       = "${aws_iam_role.workers.name}"
+  value       = "${aws_iam_role.workers.*.name}"
 }
 
 output "worker_iam_role_arn" {
   description = "default IAM role ARN for EKS worker groups"
-  value       = "${aws_iam_role.workers.arn}"
+  value       = "${aws_iam_role.workers.*.arn}"
 }

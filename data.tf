@@ -4,6 +4,11 @@ data "aws_iam_role" "cluster" {
   name = "${local.cluster_service_role_name}"
 }
 
+data "aws_iam_instance_profile" "workers" {
+  name = "${lookup(var.worker_groups[count.index], "iam_instance_profile",  lookup(local.workers_group_defaults, "iam_instance_profile", element(concat(aws_iam_instance_profile.workers.*.name, list("")), 0)))}"
+  count = "${var.worker_group_count}"
+}
+
 data "aws_iam_policy_document" "workers_assume_role_policy" {
   statement {
     sid = "EKSWorkerAssumeRole"
